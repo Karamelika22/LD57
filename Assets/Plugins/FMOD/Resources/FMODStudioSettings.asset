@@ -609,8 +609,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: C:/Users/NASTEA/Documents/FMOD Studio/NateaAtest/LD57/LD57.fspro
-  sourceBankPath: C:/Users/NASTEA/Documents/FMOD Studio/NateaAtest/LD57/Build
+  sourceProjectPath: LD57.fspro
+  sourceBankPath: Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
