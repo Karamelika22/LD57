@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 6622508535339547529}
-  - {fileID: 5750280398151428072}
+  - {fileID: 6769814812818659084}
+  - {fileID: 4622074656878355224}
   EditorEvents:
   - {fileID: 7173945937693537595}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 5750280398151428072}
+  - {fileID: 4622074656878355224}
   StringsBanks:
-  - {fileID: 6622508535339547529}
-  cacheTime: 638795893306973722
+  - {fileID: 6769814812818659084}
+  cacheTime: 638796253306973722
   cacheVersion: 131846
---- !u!114 &5750280398151428072
+--- !u!114 &4622074656878355224
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -34,17 +34,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
+  m_Name: bank:/LudumDare57/Build/Desktop/Master.bank
   m_EditorClassIdentifier: 
-  Path: ../LudumDare57/Build/Desktop/Master.bank
-  Name: Master
+  Path: Build/Desktop/LudumDare57/Build/Desktop/Master.bank
+  Name: LudumDare57/Build/Desktop/Master
   StudioPath: bank:/Master
-  lastModified: 638795893306963664
+  lastModified: 638796253306963664
   FileSizes:
   - Name: Desktop
     Value: 1808
   Exists: 1
---- !u!114 &6622508535339547529
+--- !u!114 &6769814812818659084
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -54,12 +54,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
+  m_Name: bank:/LudumDare57/Build/Desktop/Master.strings.bank
   m_EditorClassIdentifier: 
-  Path: ../LudumDare57/Build/Desktop/Master.strings.bank
-  Name: Master.strings
+  Path: Build/Desktop/LudumDare57/Build/Desktop/Master.strings.bank
+  Name: LudumDare57/Build/Desktop/Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638795893306973722
+  lastModified: 638796253306973722
   FileSizes:
   - Name: Desktop
     Value: 756
@@ -83,7 +83,7 @@ MonoBehaviour:
     Data3: 1029499274
     Data4: 814443249
   Banks:
-  - {fileID: 5750280398151428072}
+  - {fileID: 4622074656878355224}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
