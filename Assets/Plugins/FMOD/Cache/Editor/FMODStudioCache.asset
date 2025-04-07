@@ -14,20 +14,68 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/MainMenu
   Guid:
-    Data1: 1482051229
-    Data2: 1101097386
-    Data3: 1029499274
-    Data4: 814443249
+    Data1: -2131071987
+    Data2: 1091230458
+    Data3: 1851007367
+    Data4: 605789681
   Banks:
   - {fileID: -1546392686536558237}
-  IsStream: 0
+  IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
---- !u!114 &-6173996415866874574
+  Length: 45000
+--- !u!114 &-8586288378971578857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Under/Cover
+  m_EditorClassIdentifier: 
+  Name: Cover
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2443344316
+    data2: 2898585149
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-8554350945247116194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Under/Rain
+  m_EditorClassIdentifier: 
+  Name: Rain
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2359076872
+    data2: 20219674
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-7940123582323755189
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -37,14 +85,89 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/test
+  m_Name: event:/PickUp
   m_EditorClassIdentifier: 
-  Path: event:/test
+  Path: event:/PickUp
   Guid:
-    Data1: 1010416263
-    Data2: 1291060868
-    Data3: 1418035081
-    Data4: -1152410612
+    Data1: -1195438443
+    Data2: 1248179989
+    Data3: 350765705
+    Data4: 1067304946
+  Banks:
+  - {fileID: -1546392686536558237}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 360
+  MaxDistance: 480
+  Length: 496
+--- !u!114 &-7200287021059860401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Under/Wind
+  m_EditorClassIdentifier: 
+  Name: Wind
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2521602795
+    data2: 983253111
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-7094453255937918898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Forest/Wind
+  m_EditorClassIdentifier: 
+  Name: Wind
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2521602795
+    data2: 983253111
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-5281176651433706243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Pop
+  m_EditorClassIdentifier: 
+  Path: event:/Pop
+  Guid:
+    Data1: 187148209
+    Data2: 1190347067
+    Data3: -2022135889
+    Data4: 1767257769
   Banks:
   - {fileID: -1546392686536558237}
   IsStream: 0
@@ -53,7 +176,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 200
 --- !u!114 &-1546392686536558237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,11 +192,62 @@ MonoBehaviour:
   Path: ../LudumDare57/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638795923772346785
+  lastModified: 638796318629052386
   FileSizes:
   - Name: Desktop
-    Value: 2532
+    Value: 4470624
   Exists: 1
+--- !u!114 &-653606008038278058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Forest/Cover
+  m_EditorClassIdentifier: 
+  Name: Cover
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2443344316
+    data2: 2898585149
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-638623644570740038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Walk
+  m_EditorClassIdentifier: 
+  Path: event:/Walk
+  Guid:
+    Data1: -1836511957
+    Data2: 1275884449
+    Data3: 452816041
+    Data4: 987812831
+  Banks:
+  - {fileID: -1546392686536558237}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1040
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,15 +264,78 @@ MonoBehaviour:
   - {fileID: 4774044606032416737}
   - {fileID: -1546392686536558237}
   EditorEvents:
-  - {fileID: -6173996415866874574}
   - {fileID: -9193198759146606961}
+  - {fileID: -638623644570740038}
+  - {fileID: -5281176651433706243}
+  - {fileID: 1856475735189174621}
+  - {fileID: 5676022258394917212}
+  - {fileID: -7940123582323755189}
+  - {fileID: 3772903216350501769}
+  - {fileID: 8406049917134209238}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1546392686536558237}
   StringsBanks:
   - {fileID: 4774044606032416737}
-  cacheTime: 638795923772356834
+  cacheTime: 638796318629112914
   cacheVersion: 131846
+--- !u!114 &1856475735189174621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Forest
+  m_EditorClassIdentifier: 
+  Path: event:/Forest
+  Guid:
+    Data1: 1658631939
+    Data2: 1156380302
+    Data3: -884401016
+    Data4: -707885033
+  Banks:
+  - {fileID: -1546392686536558237}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -7094453255937918898}
+  - {fileID: 5700552305199664851}
+  - {fileID: -653606008038278058}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &3772903216350501769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dytel
+  m_EditorClassIdentifier: 
+  Path: event:/Dytel
+  Guid:
+    Data1: -1380420614
+    Data2: 1254417991
+    Data3: 1623810202
+    Data4: -1865255262
+  Banks:
+  - {fileID: -1546392686536558237}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 360
+  MaxDistance: 480
+  Length: 400
 --- !u!114 &4774044606032416737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,8 +351,89 @@ MonoBehaviour:
   Path: ../LudumDare57/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638795923772356834
+  lastModified: 638796318629112914
   FileSizes:
   - Name: Desktop
-    Value: 804
+    Value: 1170
   Exists: 1
+--- !u!114 &5676022258394917212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Under
+  m_EditorClassIdentifier: 
+  Path: event:/Under
+  Guid:
+    Data1: -2065739211
+    Data2: 1128424132
+    Data3: -1936793199
+    Data4: 692570121
+  Banks:
+  - {fileID: -1546392686536558237}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -7200287021059860401}
+  - {fileID: -8554350945247116194}
+  - {fileID: -8586288378971578857}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &5700552305199664851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Forest/Rain
+  m_EditorClassIdentifier: 
+  Name: Rain
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2359076872
+    data2: 20219674
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &8406049917134209238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Kirka
+  m_EditorClassIdentifier: 
+  Path: event:/Kirka
+  Guid:
+    Data1: 755609083
+    Data2: 1258163330
+    Data3: -2017375094
+    Data4: 1599196525
+  Banks:
+  - {fileID: -1546392686536558237}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 229

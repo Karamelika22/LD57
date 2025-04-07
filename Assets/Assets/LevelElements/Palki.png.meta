@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c4910e337b6071f42b111f7ac10dd5f8
+guid: 42639967649df1740938e9c7431688b9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3401793182233309435
-    second: Etaj2_0
+      213: -5223665733596170073
+    second: Palki_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Etaj2_0
+      name: Palki_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 901
-        height: 1314
+        width: 266
+        height: 71
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 50f43adcf176ac0d0800000000000000
-      internalID: -3401793182233309435
+      spriteID: 7a8be9301bfc187b0800000000000000
+      internalID: -5223665733596170073
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Etaj2_0: -3401793182233309435
+      Palki_0: -5223665733596170073
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
