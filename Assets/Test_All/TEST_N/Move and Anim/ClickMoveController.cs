@@ -20,10 +20,13 @@ public class ClickMoveController : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField] private float stoppingDistance = 0.1f;
     [SerializeField] private LayerMask obstacleMask;
+
+    private PlayerAnim playerAnim;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.bodyType = RigidbodyType2D.Kinematic;      
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        playerAnim = GetComponent<PlayerAnim>();
     }
     void Update()
     {
@@ -71,6 +74,12 @@ public class ClickMoveController : MonoBehaviour
 
     private IEnumerator MoveTo(Vector3 dest)
     {
+
+        if (playerAnim != null)
+        {
+            playerAnim.PlayWalkAnimation(true);
+        }
+
         while (true)
         {
             Vector3 newPos = Vector3.MoveTowards(
@@ -82,6 +91,10 @@ public class ClickMoveController : MonoBehaviour
             // Проверка коллизий только при необходимости
             if (Physics2D.OverlapPoint(newPos, obstacleMask))
             {
+                if (playerAnim != null)
+                {
+                    playerAnim.PlayWalkAnimation(false);
+                }
                 //isAwaitingTarget = true;
                 Debug.Log("Обнаружено препятствие!");
                 yield break;
@@ -92,6 +105,10 @@ public class ClickMoveController : MonoBehaviour
             if ((transform.position - dest).sqrMagnitude < stoppingDistance)
             {
                 transform.position = dest;
+                if (playerAnim != null)
+                {
+                    playerAnim.PlayWalkAnimation(false);
+                }
                 Debug.Log("Достигнута конечная точка");
                 yield break;
             }
