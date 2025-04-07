@@ -1,5 +1,79 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9193198759146606961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainMenu
+  m_EditorClassIdentifier: 
+  Path: event:/MainMenu
+  Guid:
+    Data1: 1482051229
+    Data2: 1101097386
+    Data3: 1029499274
+    Data4: 814443249
+  Banks:
+  - {fileID: -1546392686536558237}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-6173996415866874574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/test
+  m_EditorClassIdentifier: 
+  Path: event:/test
+  Guid:
+    Data1: 1010416263
+    Data2: 1291060868
+    Data3: 1418035081
+    Data4: -1152410612
+  Banks:
+  - {fileID: -1546392686536558237}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1546392686536558237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../LudumDare57/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638795923772346785
+  FileSizes:
+  - Name: Desktop
+    Value: 2532
+  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13,18 +87,19 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 6769814812818659084}
-  - {fileID: 4622074656878355224}
+  - {fileID: 4774044606032416737}
+  - {fileID: -1546392686536558237}
   EditorEvents:
-  - {fileID: 7173945937693537595}
+  - {fileID: -6173996415866874574}
+  - {fileID: -9193198759146606961}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 4622074656878355224}
+  - {fileID: -1546392686536558237}
   StringsBanks:
-  - {fileID: 6769814812818659084}
-  cacheTime: 638796253306973722
+  - {fileID: 4774044606032416737}
+  cacheTime: 638795923772356834
   cacheVersion: 131846
---- !u!114 &4622074656878355224
+--- !u!114 &4774044606032416737
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -34,60 +109,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/LudumDare57/Build/Desktop/Master.bank
+  m_Name: bank:/Master.strings.bank
   m_EditorClassIdentifier: 
-  Path: Build/Desktop/LudumDare57/Build/Desktop/Master.bank
-  Name: LudumDare57/Build/Desktop/Master
-  StudioPath: bank:/Master
-  lastModified: 638796253306963664
-  FileSizes:
-  - Name: Desktop
-    Value: 1808
-  Exists: 1
---- !u!114 &6769814812818659084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/LudumDare57/Build/Desktop/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: Build/Desktop/LudumDare57/Build/Desktop/Master.strings.bank
-  Name: LudumDare57/Build/Desktop/Master.strings
+  Path: ../LudumDare57/Build/Desktop/Master.strings.bank
+  Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638796253306973722
+  lastModified: 638795923772356834
   FileSizes:
   - Name: Desktop
-    Value: 756
+    Value: 804
   Exists: 1
---- !u!114 &7173945937693537595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/fgfgfdf
-  m_EditorClassIdentifier: 
-  Path: event:/fgfgfdf
-  Guid:
-    Data1: 1482051229
-    Data2: 1101097386
-    Data3: 1029499274
-    Data4: 814443249
-  Banks:
-  - {fileID: 4622074656878355224}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
