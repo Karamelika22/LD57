@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1b12eeaaf9dd2bc46acf62b683e438ad
+guid: 29bf2c95c71101b41b2de6fbb91a6856
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -107536157907640269
-    second: CraftUI_0
+      213: -6717884257390833292
+    second: Shield_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CraftUI_0
+      name: Shield_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 750
-        height: 591
+        width: 29
+        height: 84
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 330a7632f64f18ef0800000000000000
-      internalID: -107536157907640269
+      spriteID: 471d70c5cd745c2a0800000000000000
+      internalID: -6717884257390833292
       vertices: []
       indices: 
       edges: []
@@ -148,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      CraftUI_0: -107536157907640269
+      Shield_0: -6717884257390833292
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
