@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Interactable
+  - HealthBar
+  - Sett
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -12,8 +15,8 @@ TagManager:
   - Interactable
   - Water
   - UI
-  - 
-  - 
+  - Walls
+  - Pile
   - 
   - 
   - 
