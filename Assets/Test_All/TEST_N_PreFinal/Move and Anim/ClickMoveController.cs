@@ -1,57 +1,73 @@
-using System.Collections;
+п»їusing System.Collections;
 using System.Linq;
 using UnityEngine;
+using FMODUnity;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 public class ClickMoveController : MonoBehaviour
 {
-    [Header("Настройки передвижения")]
+    [Header("ГЌГ Г±ГІГ°Г®Г©ГЄГЁ ГЇГҐГ°ГҐГ¤ГўГЁГ¦ГҐГ­ГЁГї")]
     public float speed = 5f;
     
-    [Header("Настройки клика по объекту")]
-    public float clickRadius = 0.5f; // радиус, в котором клик считается по объекту
+    [Header("ГЌГ Г±ГІГ°Г®Г©ГЄГЁ ГЄГ«ГЁГЄГ  ГЇГ® Г®ГЎГєГҐГЄГІГі")]
+    public float clickRadius = 0.5f; // Г°Г Г¤ГЁГіГ±, Гў ГЄГ®ГІГ®Г°Г®Г¬ ГЄГ«ГЁГЄ Г±Г·ГЁГІГ ГҐГІГ±Гї ГЇГ® Г®ГЎГєГҐГЄГІГі
+
+    [Header("РќР°СЃС‚СЂРѕР№РєРё Р·РІСѓРєР°")]
+    [SerializeField] private EventReference footstepsSound; // РЎСЃС‹Р»РєР° РЅР° СЃРѕР±С‹С‚РёРµ FMOD
+    [SerializeField] private EventReference characterClickSound;
+    private FMOD.Studio.EventInstance footstepsInstance;
+
+    private bool isMoving = false; // Р¤Р»Р°Рі РґРІРёР¶РµРЅРёСЏ РґР»СЏ СѓРїСЂР°РІР»РµРЅРёСЏ Р·РІСѓРєРѕРј
 
     private bool isAwaitingTarget = false;
     private Coroutine moveCoroutine;
 
-    // Кэш всех зон на сцене
+    // ГЉГЅГё ГўГ±ГҐГµ Г§Г®Г­ Г­Г  Г±Г¶ГҐГ­ГҐ
     [SerializeField] private PolygonCollider2D[] movementZones;
 
     private Rigidbody2D rb;
     [SerializeField] private float stoppingDistance = 0.1f;
     [SerializeField] private LayerMask obstacleMask;
+
+    private PlayerAnim playerAnim;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.bodyType = RigidbodyType2D.Kinematic;      
+        rb.bodyType = RigidbodyType2D.Kinematic;
+
+        footstepsInstance = RuntimeManager.CreateInstance(footstepsSound);
+        footstepsInstance.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject));
     }
     void Update()
     {
-        // Обработка клика по объекту (если ещё не в режиме выбора точки)
+        // ГЋГЎГ°Г ГЎГ®ГІГЄГ  ГЄГ«ГЁГЄГ  ГЇГ® Г®ГЎГєГҐГЄГІГі (ГҐГ±Г«ГЁ ГҐГ№Вё Г­ГҐ Гў Г°ГҐГ¦ГЁГ¬ГҐ ГўГ»ГЎГ®Г°Г  ГІГ®Г·ГЄГЁ)
         if (!isAwaitingTarget && Input.GetMouseButtonDown(0))
         {
             Vector3 clickWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             clickWorld.z = transform.position.z;
 
-            // Проверяем, попал ли клик в область вокруг объекта
+            // ГЏГ°Г®ГўГҐГ°ГїГҐГ¬, ГЇГ®ГЇГ Г« Г«ГЁ ГЄГ«ГЁГЄ Гў Г®ГЎГ«Г Г±ГІГј ГўГ®ГЄГ°ГіГЈ Г®ГЎГєГҐГЄГІГ 
             if ((clickWorld - transform.position).sqrMagnitude <= clickRadius * clickRadius)
             {
+
+                RuntimeManager.PlayOneShot(characterClickSound, transform.position);
+
                 isAwaitingTarget = true;
-                Debug.Log("Клик по игроку — выберите точку назначения");
-                return; // чтобы в тот же кадр не обработать выбор точки
+                Debug.Log("ГЉГ«ГЁГЄ ГЇГ® ГЁГЈГ°Г®ГЄГі вЂ” ГўГ»ГЎГҐГ°ГЁГІГҐ ГІГ®Г·ГЄГі Г­Г Г§Г­Г Г·ГҐГ­ГЁГї");
+                return; // Г·ГІГ®ГЎГ» Гў ГІГ®ГІ Г¦ГҐ ГЄГ Г¤Г° Г­ГҐ Г®ГЎГ°Г ГЎГ®ГІГ ГІГј ГўГ»ГЎГ®Г° ГІГ®Г·ГЄГЁ
             }
         }
 
-        // Если режим выбора точки включён — слушаем второй клик
+        // Г…Г±Г«ГЁ Г°ГҐГ¦ГЁГ¬ ГўГ»ГЎГ®Г°Г  ГІГ®Г·ГЄГЁ ГўГЄГ«ГѕГ·ВёГ­ вЂ” Г±Г«ГіГёГ ГҐГ¬ ГўГІГ®Г°Г®Г© ГЄГ«ГЁГЄ
         if (isAwaitingTarget && Input.GetMouseButtonDown(0))
         {
             Vector3 clickWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             clickWorld.z = transform.position.z;
 
-            // Проверяем, лежит ли точка внутри любой из зон
+            // ГЏГ°Г®ГўГҐГ°ГїГҐГ¬, Г«ГҐГ¦ГЁГІ Г«ГЁ ГІГ®Г·ГЄГ  ГўГ­ГіГІГ°ГЁ Г«ГѕГЎГ®Г© ГЁГ§ Г§Г®Г­
             bool insideAny = movementZones.Any(zone =>
             {
-                // OverlapPoint работает только в режиме 2D, т.е. z-координата игнорируется
+                // OverlapPoint Г°Г ГЎГ®ГІГ ГҐГІ ГІГ®Г«ГјГЄГ® Гў Г°ГҐГ¦ГЁГ¬ГҐ 2D, ГІ.ГҐ. z-ГЄГ®Г®Г°Г¤ГЁГ­Г ГІГ  ГЁГЈГ­Г®Г°ГЁГ°ГіГҐГІГ±Гї
                 return zone.OverlapPoint((Vector2)clickWorld);
             });
 
@@ -62,7 +78,7 @@ public class ClickMoveController : MonoBehaviour
             }
             else
             {
-                Debug.Log("Точка за пределами допустимой зоны");
+                Debug.Log("Г’Г®Г·ГЄГ  Г§Г  ГЇГ°ГҐГ¤ГҐГ«Г Г¬ГЁ Г¤Г®ГЇГіГ±ГІГЁГ¬Г®Г© Г§Г®Г­Г»");
             }
 
             isAwaitingTarget = false;
@@ -71,19 +87,36 @@ public class ClickMoveController : MonoBehaviour
 
     private IEnumerator MoveTo(Vector3 dest)
     {
+
+        // РќР°С‡РёРЅР°РµРј Р·РІСѓРє С€Р°РіРѕРІ
+        StartFootstepsSound();
+
+        if (playerAnim != null)
+        {
+            playerAnim.PlayWalkAnimation(true);
+        }
+
         while (true)
         {
+
             Vector3 newPos = Vector3.MoveTowards(
                 transform.position,
                 dest,
                 speed * Time.deltaTime
             );
 
-            // Проверка коллизий только при необходимости
+            // ГЏГ°Г®ГўГҐГ°ГЄГ  ГЄГ®Г«Г«ГЁГ§ГЁГ© ГІГ®Г«ГјГЄГ® ГЇГ°ГЁ Г­ГҐГ®ГЎГµГ®Г¤ГЁГ¬Г®Г±ГІГЁ
             if (Physics2D.OverlapPoint(newPos, obstacleMask))
             {
+
+                if (playerAnim != null)
+                {
+                    playerAnim.PlayWalkAnimation(false);
+                }
+
                 //isAwaitingTarget = true;
-                Debug.Log("Обнаружено препятствие!");
+                StopFootstepsSound();
+                Debug.Log("ГЋГЎГ­Г Г°ГіГ¦ГҐГ­Г® ГЇГ°ГҐГЇГїГІГ±ГІГўГЁГҐ!");
                 yield break;
             }
 
@@ -92,7 +125,13 @@ public class ClickMoveController : MonoBehaviour
             if ((transform.position - dest).sqrMagnitude < stoppingDistance)
             {
                 transform.position = dest;
-                Debug.Log("Достигнута конечная точка");
+                if (playerAnim != null)
+                {
+                    playerAnim.PlayWalkAnimation(false);
+                }
+
+                StopFootstepsSound();
+                Debug.Log("Г„Г®Г±ГІГЁГЈГ­ГіГІГ  ГЄГ®Г­ГҐГ·Г­Г Гї ГІГ®Г·ГЄГ ");
                 yield break;
             }
 
@@ -100,12 +139,37 @@ public class ClickMoveController : MonoBehaviour
         }
     }
 
+    // РќРѕРІС‹Рµ РјРµС‚РѕРґС‹ РґР»СЏ СѓРїСЂР°РІР»РµРЅРёСЏ Р·РІСѓРєРѕРј С€Р°РіРѕРІ
+    private void StartFootstepsSound()
+    {
+        if (!isMoving)
+        {
+            footstepsInstance.start();
+            isMoving = true;
+        }
+    }
 
-    // Для наглядности можно в OnDrawGizmos отрисовать зону передвижения и зону клика:
+    private void StopFootstepsSound()
+    {
+        if (isMoving)
+        {
+            footstepsInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            isMoving = false;
+        }
+    }
+
+    void OnDestroy()
+    {
+        // РћСЃРІРѕР±РѕР¶РґР°РµРј СЂРµСЃСѓСЂСЃС‹ FMOD РїСЂРё СѓРЅРёС‡С‚РѕР¶РµРЅРёРё РѕР±СЉРµРєС‚Р°
+        footstepsInstance.release();
+    }
+
+
+    // Г„Г«Гї Г­Г ГЈГ«ГїГ¤Г­Г®Г±ГІГЁ Г¬Г®Г¦Г­Г® Гў OnDrawGizmos Г®ГІГ°ГЁГ±Г®ГўГ ГІГј Г§Г®Г­Гі ГЇГҐГ°ГҐГ¤ГўГЁГ¦ГҐГ­ГЁГї ГЁ Г§Г®Г­Гі ГЄГ«ГЁГЄГ :
     void OnDrawGizmosSelected()
     {
         
-        // Радиус клика по объекту
+        // ГђГ Г¤ГЁГіГ± ГЄГ«ГЁГЄГ  ГЇГ® Г®ГЎГєГҐГЄГІГі
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, clickRadius);
     }
