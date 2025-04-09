@@ -34,6 +34,7 @@ public class ClickMoveController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Kinematic;
+        playerAnim = GetComponent<PlayerAnim>();
 
         footstepsInstance = RuntimeManager.CreateInstance(footstepsSound);
         footstepsInstance.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject));
@@ -87,7 +88,6 @@ public class ClickMoveController : MonoBehaviour
 
     private IEnumerator MoveTo(Vector3 dest)
     {
-
         // Начинаем звук шагов
         StartFootstepsSound();
 
