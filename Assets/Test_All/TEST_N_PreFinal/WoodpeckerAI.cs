@@ -1,19 +1,27 @@
-using System.Collections;
+п»їusing System.Collections;
 using UnityEngine;
 
 public class WoodpeckerAI : MonoBehaviour
 {
     private Transform targetPoint;
-    private Vector3 spawnPosition; // Точка, откуда появился дятел
+    private Vector3 spawnPosition; // Г’Г®Г·ГЄГ , Г®ГІГЄГіГ¤Г  ГЇГ®ГїГўГЁГ«Г±Гї Г¤ГїГІГҐГ«
     private float speed = 2f;
     private bool isReturning = false;
     private SpriteRenderer spriteRenderer;
+    private Animator animator;
 
     public void Initialize(Transform target)
     {
         targetPoint = target;
-        spawnPosition = transform.position; // Запоминаем, откуда прилетел
+        spawnPosition = transform.position; // Г‡Г ГЇГ®Г¬ГЁГ­Г ГҐГ¬, Г®ГІГЄГіГ¤Г  ГЇГ°ГЁГ«ГҐГІГҐГ«
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        animator = GetComponent<Animator>();
+
+        if (animator != null)
+        {
+            animator.SetBool("isPecking", false);
+        }
     }
 
     void Update()
@@ -22,10 +30,10 @@ public class WoodpeckerAI : MonoBehaviour
 
         if (!isReturning)
         {
-            // Летим к цели
+            // Г‹ГҐГІГЁГ¬ ГЄ Г¶ГҐГ«ГЁ
             transform.position = Vector3.MoveTowards(transform.position, targetPoint.position, speed * Time.deltaTime);
 
-            // Если достигли цели
+            // Г…Г±Г«ГЁ Г¤Г®Г±ГІГЁГЈГ«ГЁ Г¶ГҐГ«ГЁ
             if (Vector3.Distance(transform.position, targetPoint.position) < 0.1f)
             {
                 StartCoroutine(PeckAndReturn());
@@ -33,10 +41,10 @@ public class WoodpeckerAI : MonoBehaviour
         }
         else
         {
-            // Летим обратно к спавну
+            // Г‹ГҐГІГЁГ¬ Г®ГЎГ°Г ГІГ­Г® ГЄ Г±ГЇГ ГўГ­Гі
             transform.position = Vector3.MoveTowards(transform.position, spawnPosition, speed * Time.deltaTime);
 
-            // Если вернулись — уничтожаем
+            // Г…Г±Г«ГЁ ГўГҐГ°Г­ГіГ«ГЁГ±Гј вЂ” ГіГ­ГЁГ·ГІГ®Г¦Г ГҐГ¬
             if (Vector3.Distance(transform.position, spawnPosition) < 0.1f)
             {
                 Destroy(gameObject);
@@ -46,14 +54,28 @@ public class WoodpeckerAI : MonoBehaviour
 
     IEnumerator PeckAndReturn()
     {
+
+        // Р’РєР»СЋС‡Р°РµРј Р°РЅРёРјР°С†РёСЋ РєР»С‘РІР°
+        if (animator != null)
+        {
+            animator.SetBool("isPecking", true);
+        }
+
         FallingObjectSpawner.Instance.StartSpawning(0.8f);
-        // 1. Анимация клевания (стоим 3 секунды)
+        // 1. ГЂГ­ГЁГ¬Г Г¶ГЁГї ГЄГ«ГҐГўГ Г­ГЁГї (Г±ГІГ®ГЁГ¬ 3 Г±ГҐГЄГіГ­Г¤Г»)
         yield return new WaitForSeconds(3f);
         FallingObjectSpawner.Instance.StopSpawning();
-        // 2. Плавно отлетаем назад на 3 единицы по X
+
+        // Р’С‹РєР»СЋС‡Р°РµРј Р°РЅРёРјР°С†РёСЋ РєР»С‘РІР°
+        if (animator != null)
+        {
+            animator.SetBool("isPecking", false);
+        }
+
+        // 2. ГЏГ«Г ГўГ­Г® Г®ГІГ«ГҐГІГ ГҐГ¬ Г­Г Г§Г Г¤ Г­Г  3 ГҐГ¤ГЁГ­ГЁГ¶Г» ГЇГ® X
         Vector3 startPos = transform.position;
         Vector3 retreatPos = startPos + new Vector3(-3f, 0, 0);
-        float retreatDuration = 1f; // За сколько секунд отлетаем назад
+        float retreatDuration = 1f; // Г‡Г  Г±ГЄГ®Г«ГјГЄГ® Г±ГҐГЄГіГ­Г¤ Г®ГІГ«ГҐГІГ ГҐГ¬ Г­Г Г§Г Г¤
         float elapsedTime = 0f;
 
         while (elapsedTime < retreatDuration)
@@ -67,13 +89,13 @@ public class WoodpeckerAI : MonoBehaviour
             yield return null;
         }
 
-        // 3. Разворачиваем спрайт
+        // 3. ГђГ Г§ГўГ®Г°Г Г·ГЁГўГ ГҐГ¬ Г±ГЇГ°Г Г©ГІ
         if (spriteRenderer != null)
         {
             spriteRenderer.flipX = true;
         }
 
-        // 4. Летим обратно к точке спавна
+        // 4. Г‹ГҐГІГЁГ¬ Г®ГЎГ°Г ГІГ­Г® ГЄ ГІГ®Г·ГЄГҐ Г±ГЇГ ГўГ­Г 
         isReturning = true;
     }
 }
