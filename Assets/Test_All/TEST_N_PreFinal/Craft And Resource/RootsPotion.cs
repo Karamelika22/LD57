@@ -5,6 +5,7 @@ public class RootsPotion : CraftedItem
 
     public override void ActivateEffect()
     {
+        WinDefeat.Instance.TryToWin(1);
         Health.Instance.UpdateMaxHealth(increaseAmount);
         Destroy(gameObject, 0.1f); // Удаляем после использования
     }

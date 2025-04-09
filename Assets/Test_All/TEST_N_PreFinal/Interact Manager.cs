@@ -29,14 +29,14 @@ public class InteractManager : MonoBehaviour
                 if (!isGathering || currentGatheringType != "Light")
                 {
                     if (isGathering) StopCoroutine(gatheringCoroutine);
-                    gatheringCoroutine = StartCoroutine(GatherResourceRoutine("Light", 2, 3, 8));
+                    gatheringCoroutine = StartCoroutine(GatherResourceRoutine("Light", 2, 5, 11, 4f));
                 }
                 break;
-            case "Mineral":
-                if (!isGathering || currentGatheringType != "Mineral")
+            case "Mine":
+                if (!isGathering || currentGatheringType != "Mine")
                 {
                     if (isGathering) StopCoroutine(gatheringCoroutine);
-                    gatheringCoroutine = StartCoroutine(GatherResourceRoutine("Mineral", 0, 1, 3));
+                    gatheringCoroutine = StartCoroutine(GatherResourceRoutine("Mine", 0, 2, 5, 1f));
                 }
                 break;
             case "Plant":
@@ -44,10 +44,10 @@ public class InteractManager : MonoBehaviour
                 {
                     if (isGathering) StopCoroutine(gatheringCoroutine);
                     
-                    gatheringCoroutine = StartCoroutine(GatherResourceRoutine("Plant", 3, 10, 25));
+                    gatheringCoroutine = StartCoroutine(GatherResourceRoutine("Plant", 3, 10, 25, 5f));
                 }
                 break;
-            case "Crafting":
+            case "Craft":
                 ToggleCraftingUI();
                 break;
             default:
@@ -57,13 +57,13 @@ public class InteractManager : MonoBehaviour
     }
 
     // Универсальная корутина для сбора ресурсов
-    private IEnumerator GatherResourceRoutine(string resourceType, int resourceId, int minAmount, int maxAmount)
+    private IEnumerator GatherResourceRoutine(string resourceType, int resourceId, int minAmount, int maxAmount, float time)
     {
         isGathering = true;
         currentGatheringType = resourceType;
 
         // Начальная задержка перед первой добычей
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(time);
 
         while (isPlayerInRange)
         {
@@ -71,7 +71,7 @@ public class InteractManager : MonoBehaviour
             ResourceSystem.Instance.AddResource(resourceId, amount);
             Debug.Log($"Собрано: {resourceType} ({amount} ед.)");
 
-            yield return new WaitForSeconds(5f); // Задержка между добычей
+            yield return new WaitForSeconds(time); // Задержка между добычей
         }
 
         isGathering = false;

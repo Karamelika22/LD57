@@ -1,0 +1,52 @@
+using UnityEngine;
+
+public class WinDefeat : MonoBehaviour
+{
+    public static WinDefeat Instance { get; private set; }
+    public CanvasGroup defeatGroup;
+    public CanvasGroup winGroup;
+    private int rootLevel;
+    private PauseManager pause;
+    public Interactable[] interactables; 
+    void Awake()
+    {
+        Instance= this;
+        pause= GetComponent<PauseManager>();
+    }
+
+    public void Defeat()
+    {
+        if (defeatGroup == null) return;
+        pause.Pause();
+        TriggerEndGameForAll();
+        bool isUIVisible = defeatGroup.alpha > 0;
+        defeatGroup.alpha = isUIVisible ? 0 : 1;
+        defeatGroup.interactable = !isUIVisible;
+        
+    }
+
+    public void TryToWin(int i)
+    {
+        rootLevel += i;
+        if (rootLevel == 3) { Win(); }
+    }
+    void Win()
+    {
+        if (winGroup == null) return;
+        pause.Pause();
+        TriggerEndGameForAll();
+        bool isUIVisible = winGroup.alpha > 0;
+        winGroup.alpha = isUIVisible ? 0 : 1;
+        winGroup.interactable = !isUIVisible;
+    }
+    public void TriggerEndGameForAll()
+    {
+        foreach (Interactable interactable in interactables)
+        {
+            if (interactable != null)
+            {
+                interactable.EndGame();
+            }
+        }
+    }
+}

@@ -6,13 +6,13 @@ using FMODUnity;
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 public class ClickMoveController : MonoBehaviour
 {
-    [Header("Íàñòðîéêè ïåðåäâèæåíèÿ")]
+    [Header("Movement Settings")]
     public float speed = 5f;
-    
-    [Header("Íàñòðîéêè êëèêà ïî îáúåêòó")]
-    public float clickRadius = 0.5f; // ðàäèóñ, â êîòîðîì êëèê ñ÷èòàåòñÿ ïî îáúåêòó
 
-    [Header("Настройки звука")]
+    [Header("Interaction Settings")]
+    public float clickRadius = 0.5f;
+
+    [Header("Sound Settings")]
     [SerializeField] private EventReference footstepsSound; // Ссылка на событие FMOD
     [SerializeField] private EventReference characterClickSound;
     private FMOD.Studio.EventInstance footstepsInstance;
@@ -41,21 +41,21 @@ public class ClickMoveController : MonoBehaviour
     }
     void Update()
     {
-        // Îáðàáîòêà êëèêà ïî îáúåêòó (åñëè åù¸ íå â ðåæèìå âûáîðà òî÷êè)
+        
         if (!isAwaitingTarget && Input.GetMouseButtonDown(0))
         {
             Vector3 clickWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             clickWorld.z = transform.position.z;
 
-            // Ïðîâåðÿåì, ïîïàë ëè êëèê â îáëàñòü âîêðóã îáúåêòà
+            
             if ((clickWorld - transform.position).sqrMagnitude <= clickRadius * clickRadius)
             {
 
                 RuntimeManager.PlayOneShot(characterClickSound, transform.position);
 
                 isAwaitingTarget = true;
-                Debug.Log("Êëèê ïî èãðîêó — âûáåðèòå òî÷êó íàçíà÷åíèÿ");
-                return; // ÷òîáû â òîò æå êàäð íå îáðàáîòàòü âûáîð òî÷êè
+                Debug.Log("Character selected - awaiting target point");
+                return; 
             }
         }
 
@@ -65,10 +65,8 @@ public class ClickMoveController : MonoBehaviour
             Vector3 clickWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             clickWorld.z = transform.position.z;
 
-            // Ïðîâåðÿåì, ëåæèò ëè òî÷êà âíóòðè ëþáîé èç çîí
             bool insideAny = movementZones.Any(zone =>
             {
-                // OverlapPoint ðàáîòàåò òîëüêî â ðåæèìå 2D, ò.å. z-êîîðäèíàòà èãíîðèðóåòñÿ
                 return zone.OverlapPoint((Vector2)clickWorld);
             });
 
@@ -79,7 +77,7 @@ public class ClickMoveController : MonoBehaviour
             }
             else
             {
-                Debug.Log("Òî÷êà çà ïðåäåëàìè äîïóñòèìîé çîíû");
+                Debug.Log("Target point is outside allowed movement zones");
             }
 
             isAwaitingTarget = false;
@@ -105,7 +103,6 @@ public class ClickMoveController : MonoBehaviour
                 speed * Time.deltaTime
             );
 
-            // Ïðîâåðêà êîëëèçèé òîëüêî ïðè íåîáõîäèìîñòè
             if (Physics2D.OverlapPoint(newPos, obstacleMask))
             {
 
@@ -116,7 +113,7 @@ public class ClickMoveController : MonoBehaviour
 
                 //isAwaitingTarget = true;
                 StopFootstepsSound();
-                Debug.Log("Îáíàðóæåíî ïðåïÿòñòâèå!");
+                Debug.Log("Movement stopped - obstacle detected");
                 yield break;
             }
 
@@ -131,7 +128,7 @@ public class ClickMoveController : MonoBehaviour
                 }
 
                 StopFootstepsSound();
-                Debug.Log("Äîñòèãíóòà êîíå÷íàÿ òî÷êà");
+                Debug.Log("Movement completed - reached destination");
                 yield break;
             }
 
@@ -165,7 +162,7 @@ public class ClickMoveController : MonoBehaviour
     }
 
 
-    // Äëÿ íàãëÿäíîñòè ìîæíî â OnDrawGizmos îòðèñîâàòü çîíó ïåðåäâèæåíèÿ è çîíó êëèêà:
+    
     void OnDrawGizmosSelected()
     {
         

@@ -17,7 +17,7 @@ public class Health : MonoBehaviour
     private float shieldTimer = 0f;
     private bool isShieldActive = false;
     private const float SHIELD_DURATION = 60f; // 60 секунд = 1 минута
-    private const float SHIELD_ARMOR_VALUE = 15f;
+    private const float SHIELD_ARMOR_VALUE = 20f;
     public static Health  Instance { get; private set; }
 
     private void Awake()
@@ -145,9 +145,7 @@ public class Health : MonoBehaviour
 
     void Die()
     {
-        // Логика смерти персонажа
-        Debug.Log("Персонаж умер!");
-        
+        WinDefeat.Instance.Defeat();
     }
 
     // Для восстановления здоровья

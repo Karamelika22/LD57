@@ -56,5 +56,9 @@ public class Interactable : MonoBehaviour
         yield return new WaitForSeconds(delay);
         Destroy(gameObject);
     }
+    public void EndGame()
+    {
+        interactionHint.SetActive(false);
+    } 
 
 }
