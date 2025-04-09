@@ -3687,6 +3687,7 @@ GameObject:
   - component: {fileID: 697439587}
   - component: {fileID: 697439586}
   - component: {fileID: 697439585}
+  - component: {fileID: 697439588}
   m_Layer: 0
   m_Name: MainGameManager
   m_TagString: Sett
@@ -3734,6 +3735,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &697439588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697439584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 961b2c311d834214fbf6d6c493b667ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicVCAPath: vca:/Music
+  sfxVCAPath: vca:/SFX
+  musicSlider: {fileID: 1159288262}
+  sfxSlider: {fileID: 1556927369}
 --- !u!1 &700429405
 GameObject:
   m_ObjectHideFlags: 0
@@ -8572,7 +8589,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2034015724}
   - component: {fileID: 2034015723}
-  - component: {fileID: 2034015725}
   m_Layer: 0
   m_Name: MusicManager
   m_TagString: Untagged
@@ -8626,22 +8642,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2034015725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2034015722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 961b2c311d834214fbf6d6c493b667ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  musicVCAPath: vca:/Music
-  sfxVCAPath: vca:/SFX
-  musicSlider: {fileID: 1159288262}
-  sfxSlider: {fileID: 1556927369}
 --- !u!1 &2036182847
 GameObject:
   m_ObjectHideFlags: 0
