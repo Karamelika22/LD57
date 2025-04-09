@@ -42,7 +42,7 @@ MonoBehaviour:
   Path: ../LudumDare57/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638797598433950826
+  lastModified: 638797646331248985
   FileSizes:
   - Name: Desktop
     Value: 1256
@@ -277,7 +277,7 @@ MonoBehaviour:
   - {fileID: 6780555213130130807}
   StringsBanks:
   - {fileID: -9006880055108784067}
-  cacheTime: 638797598433950826
+  cacheTime: 638797646331248985
   cacheVersion: 131846
 --- !u!114 &1856475735189174621
 MonoBehaviour:
@@ -405,7 +405,7 @@ MonoBehaviour:
   Path: ../LudumDare57/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638797598433908704
+  lastModified: 638797646331218878
   FileSizes:
   - Name: Desktop
     Value: 4471264
