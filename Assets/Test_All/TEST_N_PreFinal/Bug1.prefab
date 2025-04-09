@@ -102,8 +102,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   attackInterval: 5
-  maxAttacks: 7
-  stayDuration: 35
+  maxAttacks: 4
+  stayDuration: 15
   moveToPositionTime: 10
   rotationSpeed: 90
   attackCount: 3

@@ -1,10 +1,13 @@
+ï»¿using Mono.Cecil;
 using System.Collections;
 using UnityEngine;
 
 public class InteractManager : MonoBehaviour
 {
     [Header("Crafting UI")]
-    [SerializeField] private CanvasGroup craftingUI; // Ññûëêà íà CanvasGroup
+    [SerializeField] private CanvasGroup craftingUI; // Ã‘Ã±Ã»Ã«ÃªÃ  Ã­Ã  CanvasGroup
+    [SerializeField] private Animator playerAnimator;
+    [SerializeField] private Animator luchAnimator;
 
     private bool isPlayerInRange = false;
     private bool isGathering = false;
@@ -12,7 +15,7 @@ public class InteractManager : MonoBehaviour
     private string currentGatheringType;
     
     
-    // Âûçûâàåòñÿ ïðè âçàèìîäåéñòâèè ñ îáúåêòîì (íàæàòèè F)
+    // Ã‚Ã»Ã§Ã»Ã¢Ã Ã¥Ã²Ã±Ã¿ Ã¯Ã°Ã¨ Ã¢Ã§Ã Ã¨Ã¬Ã®Ã¤Ã¥Ã©Ã±Ã²Ã¢Ã¨Ã¨ Ã± Ã®Ã¡ÃºÃ¥ÃªÃ²Ã®Ã¬ (Ã­Ã Ã¦Ã Ã²Ã¨Ã¨ F)
     public static InteractManager Instance { get; private set; }
     private void Awake()
     {
@@ -21,7 +24,7 @@ public class InteractManager : MonoBehaviour
     
     public void HandleInteraction(string interactionType)
     {
-        if (!isPlayerInRange) return; // Åñëè èãðîê âûøåë èç ðàäèóñà - íè÷åãî íå äåëàåì
+        if (!isPlayerInRange) return; // Ã…Ã±Ã«Ã¨ Ã¨Ã£Ã°Ã®Ãª Ã¢Ã»Ã¸Ã¥Ã« Ã¨Ã§ Ã°Ã Ã¤Ã¨Ã³Ã±Ã  - Ã­Ã¨Ã·Ã¥Ã£Ã® Ã­Ã¥ Ã¤Ã¥Ã«Ã Ã¥Ã¬
 
         switch (interactionType)
         {
@@ -37,6 +40,8 @@ public class InteractManager : MonoBehaviour
                 {
                     if (isGathering) StopCoroutine(gatheringCoroutine);
                     gatheringCoroutine = StartCoroutine(GatherResourceRoutine("Mine", 0, 2, 5, 1f));
+
+
                 }
                 break;
             case "Plant":
@@ -56,29 +61,51 @@ public class InteractManager : MonoBehaviour
         }
     }
 
-    // Óíèâåðñàëüíàÿ êîðóòèíà äëÿ ñáîðà ðåñóðñîâ
+
+
+    // Ã“Ã­Ã¨Ã¢Ã¥Ã°Ã±Ã Ã«Ã¼Ã­Ã Ã¿ ÃªÃ®Ã°Ã³Ã²Ã¨Ã­Ã  Ã¤Ã«Ã¿ Ã±Ã¡Ã®Ã°Ã  Ã°Ã¥Ã±Ã³Ã°Ã±Ã®Ã¢
     private IEnumerator GatherResourceRoutine(string resourceType, int resourceId, int minAmount, int maxAmount, float time)
     {
         isGathering = true;
         currentGatheringType = resourceType;
 
-        // Íà÷àëüíàÿ çàäåðæêà ïåðåä ïåðâîé äîáû÷åé
+        if (playerAnimator != null)
+        {
+            playerAnimator.SetBool("IsDig", resourceType == "Mine");
+            playerAnimator.SetBool("IsDancing", resourceType == "Light");
+            //playerAnimator.SetBool("isGathering", resourceType != "Mine"); // Ð´Ð»Ñ Ð´Ñ€ÑƒÐ³Ð¸Ñ… ÑÐ»ÑƒÑ‡Ð°ÐµÐ², ÐµÑÐ»Ð¸ Ð½ÑƒÐ¶Ð½Ð¾
+        }
+
+        if (luchAnimator != null)
+        {
+            luchAnimator.SetBool("IsStart", resourceType == "Light");
+        }
+
+        // ÃÃ Ã·Ã Ã«Ã¼Ã­Ã Ã¿ Ã§Ã Ã¤Ã¥Ã°Ã¦ÃªÃ  Ã¯Ã¥Ã°Ã¥Ã¤ Ã¯Ã¥Ã°Ã¢Ã®Ã© Ã¤Ã®Ã¡Ã»Ã·Ã¥Ã©
         yield return new WaitForSeconds(time);
 
         while (isPlayerInRange)
         {
-            int amount = Random.Range(minAmount, maxAmount); // Ñëó÷àéíîå êîëè÷åñòâî
+            int amount = Random.Range(minAmount, maxAmount); // Ã‘Ã«Ã³Ã·Ã Ã©Ã­Ã®Ã¥ ÃªÃ®Ã«Ã¨Ã·Ã¥Ã±Ã²Ã¢Ã®
             ResourceSystem.Instance.AddResource(resourceId, amount);
-            Debug.Log($"Ñîáðàíî: {resourceType} ({amount} åä.)");
+            Debug.Log($"Ã‘Ã®Ã¡Ã°Ã Ã­Ã®: {resourceType} ({amount} Ã¥Ã¤.)");
 
-            yield return new WaitForSeconds(time); // Çàäåðæêà ìåæäó äîáû÷åé
+            yield return new WaitForSeconds(time); // Ã‡Ã Ã¤Ã¥Ã°Ã¦ÃªÃ  Ã¬Ã¥Ã¦Ã¤Ã³ Ã¤Ã®Ã¡Ã»Ã·Ã¥Ã©
+        }
+
+        if (playerAnimator != null)
+        {
+            playerAnimator.SetBool("IsDig", false);
+            //playerAnimator.SetBool("isGathering", false);
         }
 
         isGathering = false;
         currentGatheringType = null;
+
+
     }
 
-    // Âêëþ÷åíèå/âûêëþ÷åíèå UI êðàôòà
+    // Ã‚ÃªÃ«Ã¾Ã·Ã¥Ã­Ã¨Ã¥/Ã¢Ã»ÃªÃ«Ã¾Ã·Ã¥Ã­Ã¨Ã¥ UI ÃªÃ°Ã Ã´Ã²Ã 
     private void ToggleCraftingUI()
     {
         if (craftingUI == null) return;
@@ -89,7 +116,7 @@ public class InteractManager : MonoBehaviour
         craftingUI.blocksRaycasts = !isUIVisible;
     }
 
-    // Èãðîê âîøåë â çîíó
+    // ÃˆÃ£Ã°Ã®Ãª Ã¢Ã®Ã¸Ã¥Ã« Ã¢ Ã§Ã®Ã­Ã³
     public void SetPlayerInRange(bool state)
     {
         isPlayerInRange = state;
@@ -98,10 +125,23 @@ public class InteractManager : MonoBehaviour
             StopCoroutine(gatheringCoroutine);
             isGathering = false;
             currentGatheringType = null;
+
+            if (playerAnimator != null)
+            {
+                playerAnimator.SetBool("IsDig", false);
+                playerAnimator.SetBool("IsDancing", false);
+                //playerAnimator.SetBool("isGathering", false);
+            }
+
+            if (luchAnimator != null)
+            {
+                luchAnimator.SetBool("IsEnd", true);
+            }
+
         }
     }
 
-    // Åñëè èãðîê óøåë, çàêðûâàåì UI
+    // Ã…Ã±Ã«Ã¨ Ã¨Ã£Ã°Ã®Ãª Ã³Ã¸Ã¥Ã«, Ã§Ã ÃªÃ°Ã»Ã¢Ã Ã¥Ã¬ UI
     public void ForceCloseCraftingUI()
     {
         if (craftingUI != null && craftingUI.alpha > 0)

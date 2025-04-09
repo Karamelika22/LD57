@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1293210705386755582
+--- !u!1 &7227000556398833036
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2029536905569448507}
-  - component: {fileID: 698527689690181462}
-  - component: {fileID: -7074575057180935784}
+  - component: {fileID: 4428413480666257555}
+  - component: {fileID: 3380209764017614083}
+  - component: {fileID: 1182730238977366332}
   m_Layer: 0
-  m_Name: Leaf
-  m_TagString: Untagged
+  m_Name: Bug3
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2029536905569448507
+--- !u!4 &4428413480666257555
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1293210705386755582}
+  m_GameObject: {fileID: 7227000556398833036}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.622124, y: -7.2478256, z: 0}
+  m_LocalPosition: {x: -33.285873, y: 1.048718, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &698527689690181462
+--- !u!212 &3380209764017614083
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1293210705386755582}
+  m_GameObject: {fileID: 7227000556398833036}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -77,26 +77,36 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 4a6e66d2400d9414092b71b4ec1b64e7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7e0f623c6b241864b85993d9e91af82e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.05, y: 0.97}
+  m_Size: {x: 0.48, y: 0.72}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-7074575057180935784
+--- !u!114 &1182730238977366332
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1293210705386755582}
+  m_GameObject: {fileID: 7227000556398833036}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dff88db69187ce47840eb2407b9de72, type: 3}
+  m_Script: {fileID: 11500000, guid: 50985df5fe19697429be3d36cdc80199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 2
+  attackInterval: 5
+  maxAttacks: 3
+  stayDuration: 15
+  moveToPositionTime: 10
+  rotationSpeed: 180
+  attackCount: 3
+  health: 100
+  stealAmount: 1
+  returnPercentage: 0.5

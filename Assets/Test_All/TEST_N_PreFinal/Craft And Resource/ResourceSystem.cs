@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using System.Collections;
 
 public class ResourceSystem : MonoBehaviour
 {
@@ -9,10 +11,15 @@ public class ResourceSystem : MonoBehaviour
         public string name;
         public float currentAmount;
         public float maxAmount;
+        public float previousAmount; // Для отслеживания изменений
         public Image uiFillImage;
     }
 
     public Resource[] resources = new Resource[4];
+    public TextMeshProUGUI[] text = new TextMeshProUGUI[4];
+    private bool enableColorEffect = true; // Флаг для включения/выключения эффекта
+
+    private Coroutine[] colorResetCoroutines;
     public static ResourceSystem Instance { get; private set; }
     void Awake()
     {
@@ -21,6 +28,7 @@ public class ResourceSystem : MonoBehaviour
     void Start()
     {
         // Инициализация UI
+        colorResetCoroutines = new Coroutine[text.Length];
         InitializeResources();
         UpdateAllUI();
     }
@@ -38,12 +46,16 @@ public class ResourceSystem : MonoBehaviour
                 // Для ресурса с индексом 1 всегда 100
                 resources[i].currentAmount = 100f;
                 resources[i].maxAmount = 100f;
+                float roundedValue = Mathf.Round(resources[i].currentAmount * 100f) / 100f;
+                text[i].text = $"{roundedValue}";
             }
             else
             {
                 // Для остальных ресурсов случайное значение от 30 до 50
                 resources[i].currentAmount = Random.Range(30f, 50f);
-                resources[i].maxAmount = 100f; 
+                resources[i].maxAmount = 100f;
+                float roundedValue = Mathf.Round(resources[i].currentAmount * 100f) / 100f;
+                text[i].text = $"{roundedValue}";
             }
 
             // Инициализация имени, если не задано
@@ -53,7 +65,7 @@ public class ResourceSystem : MonoBehaviour
             }
         }
     }
-    
+
     // Обновление всех UI элементов
     public void UpdateAllUI()
     {
@@ -71,16 +83,27 @@ public class ResourceSystem : MonoBehaviour
             resources[resourceIndex].uiFillImage.fillAmount =
                 resources[resourceIndex].currentAmount / resources[resourceIndex].maxAmount;
         }
+        if (text[resourceIndex] != null)
+        {
+            float roundedValue = Mathf.Round(resources[resourceIndex].currentAmount * 100f) / 100f;
+            text[resourceIndex].text = $"{roundedValue}";
+        }
+
+        CheckForColorEffect(resourceIndex);
     }
 
     // Добавление ресурса
     public void AddResource(int resourceIndex, float amount)
     {
+        // Сохраняем предыдущее значение перед изменением
+        resources[resourceIndex].previousAmount = resources[resourceIndex].currentAmount;
+
         resources[resourceIndex].currentAmount = Mathf.Clamp(
             resources[resourceIndex].currentAmount + amount,
             0,
             resources[resourceIndex].maxAmount);
         UpdateUI(resourceIndex);
+
     }
 
     // Установка значения ресурса
@@ -108,5 +131,31 @@ public class ResourceSystem : MonoBehaviour
             return true;
         }
         return false;
+    }
+    void CheckForColorEffect(int resourceIndex)
+    {
+        if (!enableColorEffect || text[resourceIndex] == null) return;
+
+        // Если количество увеличилось
+        if (resources[resourceIndex].currentAmount > resources[resourceIndex].previousAmount)
+        {
+            // Останавливаем предыдущую корутину
+            if (colorResetCoroutines[resourceIndex] != null)
+            {
+                StopCoroutine(colorResetCoroutines[resourceIndex]);
+            }
+
+            // Устанавливаем зеленый цвет
+            text[resourceIndex].color = Color.green;
+
+            // Запускаем корутину для сброса цвета
+            colorResetCoroutines[resourceIndex] = StartCoroutine(ResetTextColor(resourceIndex));
+        }
+    }
+    private IEnumerator ResetTextColor(int index)
+    {
+        yield return new WaitForSeconds(2f);
+        text[index].color = Color.white;
+        colorResetCoroutines[index] = null;
     }
 }

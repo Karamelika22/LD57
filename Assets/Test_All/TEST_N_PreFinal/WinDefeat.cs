@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class WinDefeat : MonoBehaviour
 {
@@ -7,7 +7,8 @@ public class WinDefeat : MonoBehaviour
     public CanvasGroup winGroup;
     private int rootLevel;
     private PauseManager pause;
-    public Interactable[] interactables; 
+    public Interactable[] interactables;
+    public GameObject[] levelImages; // Добавляем массив картинок по уровням
     void Awake()
     {
         Instance= this;
@@ -28,6 +29,7 @@ public class WinDefeat : MonoBehaviour
     public void TryToWin(int i)
     {
         rootLevel += i;
+        UpdateLevelImage(); // Обновляем изображение при изменении уровня
         if (rootLevel == 3) { Win(); }
     }
     void Win()
@@ -47,6 +49,17 @@ public class WinDefeat : MonoBehaviour
             {
                 interactable.EndGame();
             }
+        }
+    }
+
+    void UpdateLevelImage()
+    {
+
+        // Включаем только текущее изображение уровня, если оно есть
+        if (rootLevel >= 0 && rootLevel < levelImages.Length)
+        {
+            if (levelImages[rootLevel] != null)
+                levelImages[rootLevel].SetActive(true);
         }
     }
 }
