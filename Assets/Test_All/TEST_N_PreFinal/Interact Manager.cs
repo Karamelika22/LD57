@@ -1,5 +1,4 @@
-﻿using Mono.Cecil;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class InteractManager : MonoBehaviour
@@ -20,6 +19,7 @@ public class InteractManager : MonoBehaviour
     private void Awake()
     {
         Instance= this;
+        DontDestroyOnLoad(gameObject);
     }
     
     public void HandleInteraction(string interactionType)

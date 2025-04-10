@@ -8,12 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Test_All/Menu.unity
     guid: 2a98d83894f3e9c48ac072df17c026f7
-  - enabled: 0
-    path: Assets/Test_All/TEST_N/TestScene.unity
-    guid: 89f9f585d92ef6a40a81fc670b69d8ff
   - enabled: 1
-    path: Assets/Test_All/TEST_N_PreFinal/TestScene.unity
-    guid: 47e7ee5c19b10094aaa655856c31d432
+    path: Assets/Test_All/Level1/Level1.unity
+    guid: 169c78166b0f0b145accf584fc1b4eec
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

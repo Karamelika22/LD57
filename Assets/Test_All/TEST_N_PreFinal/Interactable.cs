@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
 {
@@ -8,20 +7,13 @@ public class Interactable : MonoBehaviour
     [SerializeField] private GameObject interactionHint; // Подсказка "Press [F]"
     [Header("Pile Settings")]
     [SerializeField] private bool isPile = false;
-    private InteractManager interactManager;
+    
     private bool _isPlayerInRange = false; // Локальный флаг для отслеживания игрока в зоне
-
-    private void Start()
-    {
-        if (interactManager == null)
-        {
-            interactManager = InteractManager.Instance;
-        }
-    }
+  
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
-        interactManager.SetPlayerInRange(true);
+        InteractManager.Instance.SetPlayerInRange(true);
         _isPlayerInRange = true; // Устанавливаем флаг для этого объекта
         if(interactionHint!=null) interactionHint.SetActive(true);
     }
@@ -29,25 +21,25 @@ public class Interactable : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
-        interactManager.SetPlayerInRange(false);
+        InteractManager.Instance.SetPlayerInRange(false);
         _isPlayerInRange = false; // Сбрасываем флаг
         if (interactionHint != null) interactionHint.SetActive(false);
-        if (interactManager != null) interactManager.ForceCloseCraftingUI();
+        if (InteractManager.Instance != null) InteractManager.Instance.ForceCloseCraftingUI();
     }
 
     private void Update()
     {
         // Проверяем локальный флаг вместо глобального
-        if (_isPlayerInRange && Input.GetKeyDown(KeyCode.F) && interactManager != null)
+        if (_isPlayerInRange && Input.GetKeyDown(KeyCode.F) && InteractManager.Instance != null)
         {
             if (isPile)
             {
-                interactManager.HandleInteraction(interactionType);
+                InteractManager.Instance.HandleInteraction(interactionType);
                 StartCoroutine(DestroyPileWithDelay(5.01f));
             }
             else
             {
-                interactManager.HandleInteraction(interactionType);
+                InteractManager.Instance.HandleInteraction(interactionType);
             }
         }
     }

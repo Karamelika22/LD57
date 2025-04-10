@@ -19,7 +19,7 @@ MonoBehaviour:
     Data3: 1851007367
     Data4: 605789681
   Banks:
-  - {fileID: -5742193649821288264}
+  - {fileID: 4051910944421715000}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -94,7 +94,7 @@ MonoBehaviour:
     Data3: 350765705
     Data4: 1067304946
   Banks:
-  - {fileID: -5742193649821288264}
+  - {fileID: 4051910944421715000}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -150,26 +150,6 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-5742193649821288264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: ../LudumDare57/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 638797646331218878
-  FileSizes:
-  - Name: Desktop
-    Value: 4471264
-  Exists: 1
 --- !u!114 &-5281176651433706243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,7 +169,7 @@ MonoBehaviour:
     Data3: -2022135889
     Data4: 1767257769
   Banks:
-  - {fileID: -5742193649821288264}
+  - {fileID: 4051910944421715000}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -197,26 +177,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 200
---- !u!114 &-1648610724537240164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: ../LudumDare57/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 638797646331248985
-  FileSizes:
-  - Name: Desktop
-    Value: 1256
-  Exists: 1
 --- !u!114 &-653606008038278058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,7 +220,7 @@ MonoBehaviour:
     Data3: 452816041
     Data4: 987812831
   Banks:
-  - {fileID: -5742193649821288264}
+  - {fileID: 4051910944421715000}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -281,8 +241,8 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -1648610724537240164}
-  - {fileID: -5742193649821288264}
+  - {fileID: 9193475705489825143}
+  - {fileID: 4051910944421715000}
   EditorEvents:
   - {fileID: -9193198759146606961}
   - {fileID: -638623644570740038}
@@ -294,10 +254,10 @@ MonoBehaviour:
   - {fileID: 8406049917134209238}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -5742193649821288264}
+  - {fileID: 4051910944421715000}
   StringsBanks:
-  - {fileID: -1648610724537240164}
-  cacheTime: 638797646331248985
+  - {fileID: 9193475705489825143}
+  cacheTime: 638798006331248985
   cacheVersion: 131846
 --- !u!114 &1856475735189174621
 MonoBehaviour:
@@ -318,7 +278,7 @@ MonoBehaviour:
     Data3: -884401016
     Data4: -707885033
   Banks:
-  - {fileID: -5742193649821288264}
+  - {fileID: 4051910944421715000}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -348,7 +308,7 @@ MonoBehaviour:
     Data3: 1623810202
     Data4: -1865255262
   Banks:
-  - {fileID: -5742193649821288264}
+  - {fileID: 4051910944421715000}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -356,6 +316,26 @@ MonoBehaviour:
   MinDistance: 360
   MaxDistance: 480
   Length: 400
+--- !u!114 &4051910944421715000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Build/Desktop/LudumDare57/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638798006331218878
+  FileSizes:
+  - Name: Desktop
+    Value: 4471264
+  Exists: 1
 --- !u!114 &5676022258394917212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,7 +355,7 @@ MonoBehaviour:
     Data3: -1936793199
     Data4: 692570121
   Banks:
-  - {fileID: -5742193649821288264}
+  - {fileID: 4051910944421715000}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -429,7 +409,7 @@ MonoBehaviour:
     Data3: -2017375094
     Data4: 1599196525
   Banks:
-  - {fileID: -5742193649821288264}
+  - {fileID: 4051910944421715000}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -437,3 +417,23 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 229
+--- !u!114 &9193475705489825143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Build/Desktop/LudumDare57/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638798006331248985
+  FileSizes:
+  - Name: Desktop
+    Value: 1256
+  Exists: 1

@@ -48,16 +48,7 @@ public class Graphics_Options : MonoBehaviour
         PlayerPrefs.SetInt("FullscreenPreference", isFullscreen ? 1 : 0);
         ApplyAndSaveSettings();
     }
-    // Переключение полноэкранного режима
-    [DllImport("__Internal")]
-    private static extern void WebGLFullscreenToggle();
-
-    public void ToggleFullscreen()
-    {
-#if UNITY_WEBGL && !UNITY_EDITOR
-    WebGLFullscreenToggle();
-#endif
-    }
+    
 
     private void InitializeFPS()
     {
